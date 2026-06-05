@@ -1,4 +1,5 @@
 ﻿
+using Ecommerce510.Api.JwtFeatures;
 using ECommerce527.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -18,13 +19,15 @@ namespace Ecommerce527.API.Areas.Identity.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly IRepository<ApplicationUserOtp> _applicationUserOtpRepository;
+        private readonly IJwtHandler _jwtHandler;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender, IRepository<ApplicationUserOtp> applicationUserOtpRepository)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender, IRepository<ApplicationUserOtp> applicationUserOtpRepository, IJwtHandler jwtHandler)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _applicationUserOtpRepository = applicationUserOtpRepository;
+            _jwtHandler = jwtHandler;
         }
 
         [HttpPost("Register")]
@@ -97,11 +100,12 @@ namespace Ecommerce527.API.Areas.Identity.Controllers
                     Errors = errors
                 });
             }
-            return Ok(new ApiResponse<object>()
+            var token = await _jwtHandler.GenerateAccessTokenAsync(user);
+            return Ok(new AuthenticatedResponse()
             {
-                IsSuccess = true,
-                Message = "Login Successfully ",
+                AccessToken = token
             });
+           
         }
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)

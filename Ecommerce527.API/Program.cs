@@ -1,13 +1,14 @@
-using ECommerce527.API.Data;
-using ECommerce527.API.Repositories;
-using ECommerce527.API.Utilities;
-using ECommerce527.API.Utilities.DbSeeder;
+
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Scalar;
 using Scalar.AspNetCore;
 using Stripe;
+using System.Text;
 namespace Ecommerce527.API
 {
     public class Program
@@ -55,6 +56,27 @@ namespace Ecommerce527.API
             });
             //builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
             StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
+            var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+            builder.Services.AddAuthentication(opt => {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = jwtSettings["validIssuer"],
+                    ValidAudience = jwtSettings["validAudience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["securityKey"]))
+                };
+            });
+
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce527.API.Models
+namespace Ecommerce527.API.Models
 {
     [PrimaryKey(nameof(ProductId) , nameof(Img))]
     public class ProductSubImage

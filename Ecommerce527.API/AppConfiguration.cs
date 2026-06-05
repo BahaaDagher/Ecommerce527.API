@@ -1,6 +1,6 @@
-﻿using ECommerce527.API.Repositories;
-using ECommerce527.API.Utilities;
-using ECommerce527.API.Utilities.DbSeeder;
+﻿using Ecommerce510.Api.JwtFeatures;
+using Ecommerce527.API.Utilities.DbSeeder;
+using ECommerce527.API.Repositories;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Ecommerce527.API
@@ -11,14 +11,17 @@ namespace Ecommerce527.API
         {
             services.AddScoped<IRepository<Category>, Repository<Category>>();
             services.AddScoped<IRepository<Brand>, Repository<Brand>>();
-            services.AddScoped<IRepository<ECommerce527.API.Models.Product>, Repository<ECommerce527.API.Models.Product>>();
+            services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IRepository<Cart>, Repository<Cart>>();
             services.AddScoped<IRepository<Promotion>, Repository<Promotion>>();
+            services.AddScoped<IRepository<Order>, Repository<Order>>();
+            services.AddScoped<IRepository<OrderItem>, Repository<OrderItem>>();
             services.AddScoped<IRepository<ApplicationUserOtp>, Repository<ApplicationUserOtp>>();
             services.AddScoped<IProductSubImageRepository, ProductSubImageRepository>();
             services.AddScoped<IProductColorRepository, ProductColorRepository>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<IDbInitializer, DbInitializer>();
+            services.AddScoped<IJwtHandler, JwtHandler>();
         }
     }
 }

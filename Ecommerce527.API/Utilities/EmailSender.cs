@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Mail;
 
-namespace ECommerce527.API.Utilities
+namespace Ecommerce527.API.Utilities
 {
     public class EmailSender : IEmailSender
     {

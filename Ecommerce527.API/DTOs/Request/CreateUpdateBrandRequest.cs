@@ -1,11 +1,10 @@
-﻿namespace Ecommerce527.API.Models
+﻿namespace Ecommerce527.API.DTOs.Request
 {
-    public class Brand
+    public class CreateUpdateBrandRequest
     {
-        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
-        public string Img { get; set; } = "default.png"; 
         public bool Status { get; set; }
+        public IFormFile? ImgFile { get; set; }
     }
 }

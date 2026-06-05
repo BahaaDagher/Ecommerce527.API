@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ECommerce527.API.Models
+namespace Ecommerce527.API.Models
 {
     public class ApplicationUserOtp
     {

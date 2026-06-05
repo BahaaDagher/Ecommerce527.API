@@ -1,4 +1,4 @@
-﻿namespace ECommerce527.API.Models
+﻿namespace Ecommerce527.API.Models
 {
     public class Product
     {

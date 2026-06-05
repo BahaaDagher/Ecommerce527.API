@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce527.API.Models
+namespace Ecommerce527.API.Models
 {
     [Index(nameof(Code)  , IsUnique =true)]
     public class Promotion

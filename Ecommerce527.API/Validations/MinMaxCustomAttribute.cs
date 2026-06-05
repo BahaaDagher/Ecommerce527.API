@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerce527.API.Validations
+namespace Ecommerce527.API.Validations
 {
     public class MinMaxCustomAttribute : ValidationAttribute
     {

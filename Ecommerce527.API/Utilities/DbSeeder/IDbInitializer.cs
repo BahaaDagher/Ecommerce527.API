@@ -1,4 +1,4 @@
-﻿namespace ECommerce527.API.Utilities.DbSeeder
+﻿namespace Ecommerce527.API.Utilities.DbSeeder
 {
     public interface IDbInitializer
     {

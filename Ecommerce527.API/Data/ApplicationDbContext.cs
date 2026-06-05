@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce527.API.Data
+namespace Ecommerce527.API.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -17,7 +17,9 @@ namespace ECommerce527.API.Data
         public DbSet<ApplicationUserOtp> ApplicationUserOtps { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
-        
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    base.OnConfiguring(optionsBuilder);

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce527.API.Utilities.DbSeeder
+namespace Ecommerce527.API.Utilities.DbSeeder
 {
     public class DbInitializer : IDbInitializer 
     {

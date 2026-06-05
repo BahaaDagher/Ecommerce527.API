@@ -1,4 +1,4 @@
-﻿namespace ECommerce527.API.Utilities
+﻿namespace Ecommerce527.API.Utilities
 {
     public class CD
     {
